@@ -22,3 +22,6 @@ go.work
 
 # MacOS hidden file
 .DS_Store
+
+# local environment configuration file
+.env.dev
