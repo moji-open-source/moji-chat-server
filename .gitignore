@@ -25,3 +25,5 @@ go.work
 
 # local environment configuration file
 .env.dev
+
+abi

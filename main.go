@@ -1,25 +1,22 @@
 package main
 
 import (
-	"context"
-	"fmt"
 	"log"
 	"net"
 
-	pb "github.com/moji-open-source/moji-chat-server/hello"
+	"github.com/moji-open-source/moji-chat-server/abi/user"
+	"github.com/moji-open-source/moji-chat-server/db"
+	server_user "github.com/moji-open-source/moji-chat-server/server/user"
 	"google.golang.org/grpc"
 )
 
-type GrpcServer struct {
-	pb.UnimplementedSayHelloServer
-}
-
-func (*GrpcServer) Hello(ctx context.Context, req *pb.HelloReq) (*pb.HelloResp, error) {
-	log.Printf("received grpc req: %+v", req.String())
-	return &pb.HelloResp{Msg: fmt.Sprintf("hello world! %s", req.Name)}, nil
+type GrpcUserServer struct {
+	user.UnimplementedUserServer
 }
 
 func main() {
+	beforeSetup()
+
 	listen, err := net.Listen("tcp", ":8081")
 	if err != nil {
 		panic(err)
@@ -27,7 +24,7 @@ func main() {
 
 	server := grpc.NewServer()
 
-	pb.RegisterSayHelloServer(server, &GrpcServer{})
+	server_user.RegisterServer(server)
 
 	log.Println("server run on 8081 port...")
 	err = server.Serve(listen)
@@ -35,4 +32,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func beforeSetup() {
+	db.InitDatabase()
 }
