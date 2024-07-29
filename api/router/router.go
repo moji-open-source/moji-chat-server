@@ -1,3 +1,7 @@
 package router
 
-func Setup() {}
+import "google.golang.org/grpc"
+
+func Setup(gRPCSvc *grpc.Server) {
+	UseUserRouter(gRPCSvc)
+}

@@ -6,7 +6,9 @@ import (
 	"github.com/spf13/viper"
 )
 
-type Env struct{}
+type Env struct {
+	Address string
+}
 
 func LoadEnv() *Env {
 	env := Env{}
