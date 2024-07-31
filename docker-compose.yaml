@@ -6,6 +6,15 @@ services:
     env_file: .env
     ports:
       - $PORT:$PORT
+  
+  redis:
+    image: redis
+    container_name: redis
+    env_file: .env
+    ports:
+      - $RDB_PORT:6379
+    # if you need a password to using the redis please unlock this comment
+    # command: redis-server --requirepass $RDB_PASSWORD
 
   postgres:
     image: postgres

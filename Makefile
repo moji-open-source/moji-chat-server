@@ -4,5 +4,5 @@ build-proto:
 	@rm -rf abi && mkdir abi
 	@set -ex && protoc --go_out=. --go-grpc_out=. ./proto/**.proto 
 
-run:
-	@go run main.go
+dev:
+	@docker-compose up redis postgres -d && go run main.go
