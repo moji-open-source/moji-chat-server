@@ -7,7 +7,8 @@ import (
 )
 
 type Env struct {
-	Address string
+	Address     string
+	DatabaseDsn string `mapstructure:"DATABASE_DSN"`
 }
 
 func LoadEnv() *Env {

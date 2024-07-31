@@ -1,7 +1,11 @@
 package router
 
-import "google.golang.org/grpc"
+import (
+	"github.com/moji-open-source/moji-chat-server/setup"
+	"google.golang.org/grpc"
+	"gorm.io/gorm"
+)
 
-func Setup(gRPCSvc *grpc.Server) {
-	UseUserRouter(gRPCSvc)
+func Setup(env *setup.Env, db *gorm.DB, gRPCSvc *grpc.Server) {
+	UseUserRouter(env, db, gRPCSvc)
 }

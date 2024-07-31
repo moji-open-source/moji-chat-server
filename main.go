@@ -28,7 +28,7 @@ func main() {
 
 	server := grpc.NewServer()
 
-	router.Setup(server)
+	router.Setup(app.Env, app.Database, server)
 
 	log.Println("server run on", address, "address...")
 	err = server.Serve(listen)
