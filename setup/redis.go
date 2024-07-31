@@ -4,8 +4,11 @@ import "github.com/redis/go-redis/v9"
 
 func NewRedlisClient(env *Env) *redis.Client {
 	return redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "", // 没有密码，默认值
-		DB:       0,  // 默认DB 0
+		Addr:       env.Address,
+		Password:   env.RedisPassword, // 没有密码，默认值
+		DB:         env.RedisDatabase, // 默认DB 0
+		Username:   env.RedisUsername,
+		PoolSize:   env.RedisPollSize,
+		ClientName: env.RedisClientName,
 	})
 }
