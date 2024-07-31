@@ -27,3 +27,6 @@ go.work
 .env.dev
 
 abi
+
+# vscode
+__debug_bin*
