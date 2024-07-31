@@ -30,3 +30,5 @@ abi
 
 # vscode
 __debug_bin*
+
+.env
