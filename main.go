@@ -12,6 +12,7 @@ import (
 
 func main() {
 	app := setup.App()
+	defer app.Redis.Close()
 
 	env := app.Env
 	log.Println("env :", env)
@@ -28,7 +29,10 @@ func main() {
 
 	server := grpc.NewServer()
 
-	router.Setup(app.Env, app.Database, server)
+	router.Setup(router.RouterContext{
+		Application: app,
+		Server:      server,
+	})
 
 	log.Println("server run on", address, "address...")
 	err = server.Serve(listen)

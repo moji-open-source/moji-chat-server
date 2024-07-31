@@ -39,5 +39,10 @@ func (c *UserController) Signin(
 		return nil, status.Errorf(http.StatusInternalServerError, "Invalid credentials")
 	}
 
-	return &grpc_user.SigninResponse{AccessToken: "token"}, nil
+	accessToken, err := c.SigninService.CreateAccessToken(&user)
+	if err != nil {
+		return nil, status.Errorf(http.StatusInternalServerError, err.Error())
+	}
+
+	return &grpc_user.SigninResponse{AccessToken: accessToken}, nil
 }
