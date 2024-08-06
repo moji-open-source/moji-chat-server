@@ -24,6 +24,7 @@ func (s *SigninService) CreateAccessToken(user *models.SysUserModel) (string, er
 
 	ctx := context.Background()
 	key := redisson.AppendRedisKey(redisson.Authentication, fmt.Sprint(user.Uid))
+
 	err := s.Redisson.Set(ctx, key, userIdAlias, time.Duration(12)*time.Hour).Err()
 	if err != nil {
 		return "", err
