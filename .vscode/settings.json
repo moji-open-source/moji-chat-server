@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "[go]": {
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true,
+    "editor.rulers": [
+      120
+    ]
+  },
+}
