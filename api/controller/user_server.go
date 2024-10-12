@@ -16,7 +16,7 @@ import (
 
 type UserController struct {
 	domain.SigninService
-	grpc_user.UnimplementedUserServer
+	grpc_user.UnimplementedUserServiceServer
 	*setup.Env
 }
 

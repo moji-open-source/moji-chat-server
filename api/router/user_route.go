@@ -13,5 +13,5 @@ func UseUserRouter(ctx RouterContext) {
 		UserRepository: models.NewUserRepository(ctx.Database),
 		Redisson:       redisson.Redisson{Client: ctx.Redis},
 	}
-	grpc_user.RegisterUserServer(ctx.Server, &controller.UserController{Env: ctx.Env, SigninService: signin})
+	grpc_user.RegisterUserServiceServer(ctx.Server, &controller.UserController{Env: ctx.Env, SigninService: signin})
 }
