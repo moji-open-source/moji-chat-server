@@ -32,7 +32,7 @@ func (c *UserController) Signin(
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, status.Errorf(http.StatusNotFound, "User not found with the gevin email")
 		}
-		return nil, status.Errorf(http.StatusInternalServerError, "unkown system error")
+		return nil, status.Errorf(http.StatusInternalServerError, "Unkown system error")
 	}
 
 	if bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)) != nil {
